@@ -46,8 +46,21 @@ const empQuestions = [
         type: "input",
         name: "github",
         message: "Input engineer's Github",
+    },
+    {
+        type: "confirm",
+        message: "Add more employees?",
+        name: "more",
+    }  
+];
+
+inquirer.prompt(empQuestions).then(val => {
+    if (val.more) {
+        inquirer.prompt(empQuestions);
+    } else {
+        process.exit(0);
     }
-]
+});
 
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
@@ -68,3 +81,4 @@ const empQuestions = [
 // for further information. Be sure to test out each class and verify it generates an
 // object with the correct structure and methods. This structure will be crucial in order
 // for the provided `render` function to work! ```
+
