@@ -59,9 +59,9 @@ function empType() {
             choices: ["Engineer", "Intern", "Create Page"],
         }
     ]).then((newEmpChoice) => {
-        if (data.role === "Engineer"){
+        if (newEmpChoice.role === "Engineer"){
             engineerQ();  
-        } else if (data.role === "Intern"){
+        } else if (newEmpChoice.role === "Intern"){
             internQ();
         } else (createHTML());
     });
@@ -106,17 +106,17 @@ function internQ() {
         {
             name: "intName",
             type: "input",
-            message: "Input engineer's name",
+            message: "Input intern's name",
         },
         {
             name: "intId",
             type: "number",
-            message: "Input engineer's ID number",
+            message: "Input intern's ID number",
         },
         {
             name: "intEmail",
             type: "input",
-            message: "Input engineers's email",
+            message: "Input intern's email",
         },
         {
             type: "input",
@@ -124,7 +124,7 @@ function internQ() {
             message: "Input intern's school",
         }
     ]).then((internA) => {
-        const newIntern = new Intern(engineerA.name, engineerA.id, engineerA.email, internA.school);
+        const newIntern = new Intern(internA.name, internA.id, internA.email, internA.school);
 
         empList.push(newIntern);
 
@@ -143,62 +143,6 @@ function createHTML() {
 managerQ();
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
-
-
-
-const empQuestions = [
-    {
-        name: "name",
-        type: "input",
-        message: "Input employee name",
-    },
-    {
-        name: "id",
-        type: "number",
-        message: "Input employee ID number",
-    },
-    {
-        name: "email",
-        type: "input",
-        message: "Input employee's email",
-    },
-    {
-        name: "role",
-        type: "list",
-        message: "Enter employee position",
-        choices: ["Manager", "Engineer", "Intern"],
-    },
-    {
-        when: input => {
-            return input.role == "Intern"
-        },
-        type: "input",
-        name: "school",
-        message: "Input intern's school",
-    },
-    {
-        when: input => {
-            return input.role == "Engineer"
-        },
-        type: "input",
-        name: "github",
-        message: "Input engineer's Github",
-    },
-    {
-        type: "confirm",
-        message: "Add more employees?",
-        name: "more",
-    }  
-];
-
-inquirer.prompt(empQuestions).then(val => {
-    if (val.more) {
-        inquirer.prompt(empQuestions);
-    } else {
-        process.exit(0);
-    }
-});
-
 
 
 // After the user has input all employees desired, call the `render` function (required
