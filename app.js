@@ -10,8 +10,140 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
+const empList = [];
+
+
+
+//ask for manager info
+function managerQ() {
+
+    return inquirer.prompt([
+        {
+            name: "managerName",
+            type: "input",
+            message: "Input Manager name", 
+        },
+        {
+            name: "managerId",
+            type: "number",
+            message: "Input manager ID number", 
+        },
+        {
+            name: "managerMail",
+            type: "input",
+            message: "Input Manager email", 
+        },
+        {
+            name: "phone",
+            type: "number",
+            message: "Input Manager phone number", 
+        }
+    ]).then((managerA) => {
+        const newManager = new Manager(managerA.name, managerA.id, managerA.email);
+
+        empList.push(newManager);
+
+        empType();
+    });
+
+}
+
+//ask for next emp type
+function empType() {
+    
+    return inquirer.prompt([
+        {
+            name: "role",
+            type: "list",
+            message: "Enter employee position",
+            choices: ["Engineer", "Intern", "Create Page"],
+        }
+    ]).then((newEmpChoice) => {
+        if (data.role === "Engineer"){
+            engineerQ();  
+        } else if (data.role === "Intern"){
+            internQ();
+        } else (createHTML());
+    });
+
+}
+
+//ask for engineer info
+function engineerQ() {
+    inquirer.prompt([
+        {
+            name: "engName",
+            type: "input",
+            message: "Input engineer's name",
+        },
+        {
+            name: "engId",
+            type: "number",
+            message: "Input engineer's ID number",
+        },
+        {
+            name: "engEmail",
+            type: "input",
+            message: "Input engineers's email",
+        },
+        {
+            type: "input",
+            name: "github",
+            message: "Input engineer's Github",
+        }
+    ]).then((engineerA) => {
+        const newEngineer = new Engineer(engineerA.name, engineerA.id, engineerA.email, engineerA.github);
+
+        empList.push(newEngineer);
+
+        empType();
+    });
+};
+
+//ask for intern info
+function internQ() {
+    inquirer.prompt([
+        {
+            name: "intName",
+            type: "input",
+            message: "Input engineer's name",
+        },
+        {
+            name: "intId",
+            type: "number",
+            message: "Input engineer's ID number",
+        },
+        {
+            name: "intEmail",
+            type: "input",
+            message: "Input engineers's email",
+        },
+        {
+            type: "input",
+            name: "school",
+            message: "Input intern's school",
+        }
+    ]).then((internA) => {
+        const newIntern = new Intern(engineerA.name, engineerA.id, engineerA.email, internA.school);
+
+        empList.push(newIntern);
+
+        empType();
+    });  
+};
+
+function createHTML() {
+    const htmlPage = render(empList);
+
+    //use fs to make the output file
+}
+
+
+
+managerQ();
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
+
 
 
 const empQuestions = [
