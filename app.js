@@ -12,8 +12,6 @@ const render = require("./lib/htmlRenderer");
 
 const empList = [];
 
-
-
 //ask for manager info
 function managerQ() {
 
@@ -39,7 +37,7 @@ function managerQ() {
             message: "Input Manager phone number", 
         }
     ]).then((managerA) => {
-        const newManager = new Manager(managerA.name, managerA.id, managerA.email);
+        const newManager = new Manager(managerA.managerName, managerA.managerId, managerA.managerMail, managerA.phone);
 
         empList.push(newManager);
 
@@ -92,7 +90,7 @@ function engineerQ() {
             message: "Input engineer's Github",
         }
     ]).then((engineerA) => {
-        const newEngineer = new Engineer(engineerA.name, engineerA.id, engineerA.email, engineerA.github);
+        const newEngineer = new Engineer(engineerA.engName, engineerA.engId, engineerA.engEmail, engineerA.github);
 
         empList.push(newEngineer);
 
@@ -124,7 +122,7 @@ function internQ() {
             message: "Input intern's school",
         }
     ]).then((internA) => {
-        const newIntern = new Intern(internA.name, internA.id, internA.email, internA.school);
+        const newIntern = new Intern(internA.intName, internA.intId, internA.intEmail, internA.school);
 
         empList.push(newIntern);
 
@@ -136,14 +134,10 @@ function createHTML() {
     const htmlPage = render(empList);
 
     //use fs to make the output file
+    fs.writeFileSync(outputPath, htmlPage);
 }
 
-
-
 managerQ();
-// Write code to use inquirer to gather information about the development team members,
-// and to create objects for each team member (using the correct classes as blueprints!)
-
 
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
@@ -156,10 +150,6 @@ managerQ();
 // `output` folder. You can use the variable `outputPath` above target this location.
 // Hint: you may need to check if the `output` folder exists and create it if it
 // does not.
-
-// HINT: each employee type (manager, engineer, or intern) has slightly different
-// information; write your code to ask different questions via inquirer depending on
-// employee type.
 
 // HINT: make sure to build out your classes first! Remember that your Manager, Engineer,
 // and Intern classes should all extend from a class named Employee; see the directions
