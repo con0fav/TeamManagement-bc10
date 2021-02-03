@@ -8,3 +8,6 @@ First, go to command line and npm i to make sure you have all the packages neede
 
 ## Technology
 Packages used are Node, Inquirer, and FS. Used to start the app, prompt the user within the CLI, and generate the HTML file, respectively.
+
+## Demo
+https://youtu.be/cT5XoxqesY0
