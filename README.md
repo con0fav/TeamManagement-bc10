@@ -9,5 +9,9 @@ First, go to command line and npm i to make sure you have all the packages neede
 ## Technology
 Packages used are Node, Inquirer, and FS. Used to start the app, prompt the user within the CLI, and generate the HTML file, respectively.
 
+## Future development
+More appealing page design including colors for each card and the page itself, pictures for employees pulled from data API used in another project.
+Clickable cards that pull up a modal with employee picture and details.
+
 ## Demo
 https://youtu.be/cT5XoxqesY0
